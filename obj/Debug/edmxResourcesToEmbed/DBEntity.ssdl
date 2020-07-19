@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JavaFloristModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="Id_Bill" />
+    </Key>
+    <Property Name="Id_Bill" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Bou" Type="int" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Image" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Id_Cus" Type="int" />
+    <Property Name="Volume" Type="int" />
+    <Property Name="Order_Date" Type="datetime" />
+    <Property Name="Delivery_Date" Type="datetime" />
+    <Property Name="Cus_Note" Type="nvarchar" MaxLength="100" />
+    <Property Name="Bill_Status" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Bouquest">
+    <Key>
+      <PropertyRef Name="Id_Bou" />
+    </Key>
+    <Property Name="Id_Bou" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Image" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="20" />
+    <Property Name="Id_Cus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="Id_Cart" />
+    </Key>
+    <Property Name="Id_Cart" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Cus" Type="int" />
+    <Property Name="Cart_Total" Type="decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="CartDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Cart" Type="int" />
+    <Property Name="Id_Bou" Type="int" />
+    <Property Name="Volume" Type="int" />
+    <Property Name="Total_Price" Type="decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Credit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Bill" Type="int" />
+    <Property Name="Credit_Card" Type="varchar" MaxLength="15" />
+    <Property Name="Code" Type="varchar" MaxLength="8" />
+    <Property Name="Price" Type="decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id_Cus" />
+    </Key>
+    <Property Name="Id_Cus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="FirstName" Type="varchar" MaxLength="10" />
+    <Property Name="LastName" Type="varchar" MaxLength="20" />
+    <Property Name="Image" Type="varchar" MaxLength="50" />
+    <Property Name="Birth" Type="date" />
+    <Property Name="Id_Gender" Type="int" />
+    <Property Name="Phone" Type="varchar" MaxLength="15" />
+    <Property Name="Address" Type="varchar" MaxLength="100" />
+    <Property Name="Id_Role" Type="int" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="Id_Gender" />
+    </Key>
+    <Property Name="Id_Gender" Type="int" Nullable="false" />
+    <Property Name="Gender_Define" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="Id_Mess" />
+    </Key>
+    <Property Name="Id_Mess" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Bill" Type="int" Nullable="false" />
+    <Property Name="Sender" Type="varchar" MaxLength="20" />
+    <Property Name="Message" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id_Role" />
+    </Key>
+    <Property Name="Id_Role" Type="int" Nullable="false" />
+    <Property Name="Role_Define" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="FK_BillCus">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id_Cus" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="Id_Cus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BouCus">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Bouquest" Type="Self.Bouquest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id_Cus" />
+      </Principal>
+      <Dependent Role="Bouquest">
+        <PropertyRef Name="Id_Cus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CaDeBou">
+    <End Role="Bouquest" Type="Self.Bouquest" Multiplicity="0..1" />
+    <End Role="CartDetails" Type="Self.CartDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bouquest">
+        <PropertyRef Name="Id_Bou" />
+      </Principal>
+      <Dependent Role="CartDetails">
+        <PropertyRef Name="Id_Bou" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CaDeCart">
+    <End Role="Cart" Type="Self.Cart" Multiplicity="0..1" />
+    <End Role="CartDetails" Type="Self.CartDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cart">
+        <PropertyRef Name="Id_Cart" />
+      </Principal>
+      <Dependent Role="CartDetails">
+        <PropertyRef Name="Id_Cart" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CartCus">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id_Cus" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="Id_Cus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CreBill">
+    <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
+    <End Role="Credit" Type="Self.Credit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bill">
+        <PropertyRef Name="Id_Bill" />
+      </Principal>
+      <Dependent Role="Credit">
+        <PropertyRef Name="Id_Bill" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CusGen">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="Id_Gender" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="Id_Gender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CusRole">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id_Role" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="Id_Role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MesBill">
+    <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bill">
+        <PropertyRef Name="Id_Bill" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="Id_Bill" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Pro_ReadShop" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ProBill_Create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_Bill" Type="int" Mode="In" />
+    <Parameter Name="id_Bou" Type="int" Mode="In" />
+    <Parameter Name="name" Type="varchar" Mode="In" />
+    <Parameter Name="image" Type="varchar" Mode="In" />
+    <Parameter Name="Description" Type="nvarchar" Mode="In" />
+    <Parameter Name="price" Type="decimal" Mode="In" />
+    <Parameter Name="id_Cus" Type="int" Mode="In" />
+    <Parameter Name="volume" Type="int" Mode="In" />
+    <Parameter Name="order_Date" Type="datetime" Mode="In" />
+    <Parameter Name="delivery_Date" Type="datetime" Mode="In" />
+    <Parameter Name="cus_Note" Type="nvarchar" Mode="In" />
+    <Parameter Name="bill_status" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ProBill_ReadAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ProBill_ReadAllBillByBouquest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_Bou" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ProBill_ReadAllBillByCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_Cus" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ProBill_UpStt_Canceled" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_Bill" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ProBill_UpStt_Delivering" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_Bill" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ProBill_UpStt_Done" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_Bill" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ProBill_UpStt_Loading" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_Bill" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ProBill_UpStt_Other" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_Bill" Type="int" Mode="In" />
+    <Parameter Name="status" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ProBou_ByCus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ProBouReadAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ProCart_CreateGetId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_Cus" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ProCart_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_Cart" Type="int" Mode="In" />
+    <Parameter Name="total" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="ProCartDetails_Create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_Cart" Type="int" Mode="In" />
+    <Parameter Name="id_Bou" Type="int" Mode="In" />
+    <Parameter Name="Volume" Type="int" Mode="In" />
+    <Parameter Name="total_price" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="ProCartDetails_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ProCartDetails_Read" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="id_Cart" Type="int" Mode="In" />
+    <Parameter Name="id_Bou" Type="int" Mode="In" />
+    <Parameter Name="Volume" Type="int" Mode="In" />
+    <Parameter Name="total_price" Type="decimal" Mode="In" />
+    <Parameter Name="statement" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ProCartDetails_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="Volume" Type="int" Mode="In" />
+    <Parameter Name="total_price" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="ProCus_Create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+    <Parameter Name="firstName" Type="varchar" Mode="In" />
+    <Parameter Name="lastName" Type="varchar" Mode="In" />
+    <Parameter Name="image" Type="varchar" Mode="In" />
+    <Parameter Name="birth" Type="date" Mode="In" />
+    <Parameter Name="id_Gender" Type="int" Mode="In" />
+    <Parameter Name="phone" Type="varchar" Mode="In" />
+    <Parameter Name="address" Type="varchar" Mode="In" />
+    <Parameter Name="id_Role" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ProCus_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ProCus_ReadMulti" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ProCus_ReadOne" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ProCus_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+    <Parameter Name="firstName" Type="varchar" Mode="In" />
+    <Parameter Name="lastName" Type="varchar" Mode="In" />
+    <Parameter Name="image" Type="varchar" Mode="In" />
+    <Parameter Name="birth" Type="date" Mode="In" />
+    <Parameter Name="id_Gender" Type="int" Mode="In" />
+    <Parameter Name="phone" Type="varchar" Mode="In" />
+    <Parameter Name="address" Type="varchar" Mode="In" />
+    <Parameter Name="id_Role" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ProCheck_U" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="email" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ProLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ProMes_Create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_Bill" Type="int" Mode="In" />
+    <Parameter Name="sender" Type="varchar" Mode="In" />
+    <Parameter Name="mes" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="ProMes_Read" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_Bill" Type="int" Mode="In" />
+    <Parameter Name="sender" Type="varchar" Mode="In" />
+    <Parameter Name="mes" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="JavaFloristModelStoreContainer">
+    <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bouquest" EntityType="Self.Bouquest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CartDetails" EntityType="Self.CartDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Credit" EntityType="Self.Credit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BillCus" Association="Self.FK_BillCus">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Bill" EntitySet="Bill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BouCus" Association="Self.FK_BouCus">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Bouquest" EntitySet="Bouquest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CaDeBou" Association="Self.FK_CaDeBou">
+      <End Role="Bouquest" EntitySet="Bouquest" />
+      <End Role="CartDetails" EntitySet="CartDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CaDeCart" Association="Self.FK_CaDeCart">
+      <End Role="Cart" EntitySet="Cart" />
+      <End Role="CartDetails" EntitySet="CartDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CartCus" Association="Self.FK_CartCus">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CreBill" Association="Self.FK_CreBill">
+      <End Role="Bill" EntitySet="Bill" />
+      <End Role="Credit" EntitySet="Credit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CusGen" Association="Self.FK_CusGen">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CusRole" Association="Self.FK_CusRole">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MesBill" Association="Self.FK_MesBill">
+      <End Role="Bill" EntitySet="Bill" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

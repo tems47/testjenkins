@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JavaFloristModelStoreContainer" CdmEntityContainer="JavaFloristEntities">
+    <EntitySetMapping Name="Bill">
+      <EntityTypeMapping TypeName="JavaFloristModel.Bill">
+        <MappingFragment StoreEntitySet="Bill">
+          <ScalarProperty Name="Id_Bill" ColumnName="Id_Bill" />
+          <ScalarProperty Name="Id_Bou" ColumnName="Id_Bou" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Id_Cus" ColumnName="Id_Cus" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+          <ScalarProperty Name="Delivery_Date" ColumnName="Delivery_Date" />
+          <ScalarProperty Name="Cus_Note" ColumnName="Cus_Note" />
+          <ScalarProperty Name="Bill_Status" ColumnName="Bill_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bouquest">
+      <EntityTypeMapping TypeName="JavaFloristModel.Bouquest">
+        <MappingFragment StoreEntitySet="Bouquest">
+          <ScalarProperty Name="Id_Bou" ColumnName="Id_Bou" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Id_Cus" ColumnName="Id_Cus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cart">
+      <EntityTypeMapping TypeName="JavaFloristModel.Cart">
+        <MappingFragment StoreEntitySet="Cart">
+          <ScalarProperty Name="Id_Cart" ColumnName="Id_Cart" />
+          <ScalarProperty Name="Id_Cus" ColumnName="Id_Cus" />
+          <ScalarProperty Name="Cart_Total" ColumnName="Cart_Total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CartDetails">
+      <EntityTypeMapping TypeName="JavaFloristModel.CartDetails">
+        <MappingFragment StoreEntitySet="CartDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_Cart" ColumnName="Id_Cart" />
+          <ScalarProperty Name="Id_Bou" ColumnName="Id_Bou" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Credit">
+      <EntityTypeMapping TypeName="JavaFloristModel.Credit">
+        <MappingFragment StoreEntitySet="Credit">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_Bill" ColumnName="Id_Bill" />
+          <ScalarProperty Name="Credit_Card" ColumnName="Credit_Card" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customer">
+      <EntityTypeMapping TypeName="JavaFloristModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="Id_Cus" ColumnName="Id_Cus" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Birth" ColumnName="Birth" />
+          <ScalarProperty Name="Id_Gender" ColumnName="Id_Gender" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Id_Role" ColumnName="Id_Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gender">
+      <EntityTypeMapping TypeName="JavaFloristModel.Gender">
+        <MappingFragment StoreEntitySet="Gender">
+          <ScalarProperty Name="Id_Gender" ColumnName="Id_Gender" />
+          <ScalarProperty Name="Gender_Define" ColumnName="Gender_Define" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Message">
+      <EntityTypeMapping TypeName="JavaFloristModel.Message">
+        <MappingFragment StoreEntitySet="Message">
+          <ScalarProperty Name="Id_Mess" ColumnName="Id_Mess" />
+          <ScalarProperty Name="Id_Bill" ColumnName="Id_Bill" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="Message1" ColumnName="Message" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="JavaFloristModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Id_Role" ColumnName="Id_Role" />
+          <ScalarProperty Name="Role_Define" ColumnName="Role_Define" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ProBill_Create" FunctionName="JavaFloristModel.Store.ProBill_Create" />
+    <FunctionImportMapping FunctionImportName="ProBill_ReadAllBillByBouquest" FunctionName="JavaFloristModel.Store.ProBill_ReadAllBillByBouquest">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JavaFloristModel.ProBill_ReadAllBillByBouquest_Result">
+          <ScalarProperty Name="Id_Bill" ColumnName="Id_Bill" />
+          <ScalarProperty Name="Id_Bou" ColumnName="Id_Bou" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Id_Cus" ColumnName="Id_Cus" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+          <ScalarProperty Name="Delivery_Date" ColumnName="Delivery_Date" />
+          <ScalarProperty Name="Cus_Note" ColumnName="Cus_Note" />
+          <ScalarProperty Name="Bill_Status" ColumnName="Bill_Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ProBill_ReadAllBillByCustomer" FunctionName="JavaFloristModel.Store.ProBill_ReadAllBillByCustomer">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JavaFloristModel.ProBill_ReadAllBillByCustomer_Result">
+          <ScalarProperty Name="Id_Bill" ColumnName="Id_Bill" />
+          <ScalarProperty Name="Id_Bou" ColumnName="Id_Bou" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Id_Cus" ColumnName="Id_Cus" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+          <ScalarProperty Name="Delivery_Date" ColumnName="Delivery_Date" />
+          <ScalarProperty Name="Cus_Note" ColumnName="Cus_Note" />
+          <ScalarProperty Name="Bill_Status" ColumnName="Bill_Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ProBill_UpStt_Canceled" FunctionName="JavaFloristModel.Store.ProBill_UpStt_Canceled" />
+    <FunctionImportMapping FunctionImportName="ProBill_UpStt_Delivering" FunctionName="JavaFloristModel.Store.ProBill_UpStt_Delivering" />
+    <FunctionImportMapping FunctionImportName="ProBill_UpStt_Done" FunctionName="JavaFloristModel.Store.ProBill_UpStt_Done" />
+    <FunctionImportMapping FunctionImportName="ProBill_UpStt_Loading" FunctionName="JavaFloristModel.Store.ProBill_UpStt_Loading" />
+    <FunctionImportMapping FunctionImportName="ProBill_UpStt_Other" FunctionName="JavaFloristModel.Store.ProBill_UpStt_Other" />
+    <FunctionImportMapping FunctionImportName="ProCart_CreateGetId" FunctionName="JavaFloristModel.Store.ProCart_CreateGetId" />
+    <FunctionImportMapping FunctionImportName="ProCart_Update" FunctionName="JavaFloristModel.Store.ProCart_Update" />
+    <FunctionImportMapping FunctionImportName="ProCartDetails_Create" FunctionName="JavaFloristModel.Store.ProCartDetails_Create" />
+    <FunctionImportMapping FunctionImportName="ProCartDetails_Delete" FunctionName="JavaFloristModel.Store.ProCartDetails_Delete" />
+    <FunctionImportMapping FunctionImportName="ProCartDetails_Read" FunctionName="JavaFloristModel.Store.ProCartDetails_Read">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JavaFloristModel.ProCartDetails_Read_Result">
+          <ScalarProperty Name="Id_Bou" ColumnName="Id_Bou" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ProCartDetails_Update" FunctionName="JavaFloristModel.Store.ProCartDetails_Update" />
+    <FunctionImportMapping FunctionImportName="ProCus_Create" FunctionName="JavaFloristModel.Store.ProCus_Create" />
+    <FunctionImportMapping FunctionImportName="ProCus_Delete" FunctionName="JavaFloristModel.Store.ProCus_Delete" />
+    <FunctionImportMapping FunctionImportName="ProCus_ReadOne" FunctionName="JavaFloristModel.Store.ProCus_ReadOne">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JavaFloristModel.ProCus_ReadOne_Result">
+          <ScalarProperty Name="Id_Cus" ColumnName="Id_Cus" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Birth" ColumnName="Birth" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Id_Gender" ColumnName="Id_Gender" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Id_Role" ColumnName="Id_Role" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ProCus_Update" FunctionName="JavaFloristModel.Store.ProCus_Update" />
+    <FunctionImportMapping FunctionImportName="ProCheck_U" FunctionName="JavaFloristModel.Store.ProCheck_U">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JavaFloristModel.ProCheck_U_Result">
+          <ScalarProperty Name="Id_Cus" ColumnName="Id_Cus" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Birth" ColumnName="Birth" />
+          <ScalarProperty Name="Id_Gender" ColumnName="Id_Gender" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Id_Role" ColumnName="Id_Role" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ProLogin" FunctionName="JavaFloristModel.Store.ProLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JavaFloristModel.ProLogin_Result">
+          <ScalarProperty Name="Id_Cus" ColumnName="Id_Cus" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Id_Role" ColumnName="Id_Role" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ProMes_Create" FunctionName="JavaFloristModel.Store.ProMes_Create" />
+    <FunctionImportMapping FunctionImportName="ProMes_Read" FunctionName="JavaFloristModel.Store.ProMes_Read">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JavaFloristModel.ProMes_Read_Result">
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Pro_ReadShop" FunctionName="JavaFloristModel.Store.Pro_ReadShop">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JavaFloristModel.Pro_ReadShop_Result">
+          <ScalarProperty Name="Id_Cus" ColumnName="Id_Cus" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Birth" ColumnName="Birth" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Id_Gender" ColumnName="Id_Gender" />
+          <ScalarProperty Name="Gender_Define" ColumnName="Gender_Define" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Id_Role" ColumnName="Id_Role" />
+          <ScalarProperty Name="Role_Define" ColumnName="Role_Define" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ProCus_ReadMulti" FunctionName="JavaFloristModel.Store.ProCus_ReadMulti">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JavaFloristModel.ProCus_ReadMulti_Result2">
+          <ScalarProperty Name="Id_Cus" ColumnName="Id_Cus" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Birth" ColumnName="Birth" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Id_Gender" ColumnName="Id_Gender" />
+          <ScalarProperty Name="Gender_Define" ColumnName="Gender_Define" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Id_Role" ColumnName="Id_Role" />
+          <ScalarProperty Name="Role_Define" ColumnName="Role_Define" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ProBill_ReadAll" FunctionName="JavaFloristModel.Store.ProBill_ReadAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JavaFloristModel.ProBill_ReadAll_Result">
+          <ScalarProperty Name="Id_Bill" ColumnName="Id_Bill" />
+          <ScalarProperty Name="Id_Bou" ColumnName="Id_Bou" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Id_Cus" ColumnName="Id_Cus" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+          <ScalarProperty Name="Delivery_Date" ColumnName="Delivery_Date" />
+          <ScalarProperty Name="Cus_Note" ColumnName="Cus_Note" />
+          <ScalarProperty Name="Bill_Status" ColumnName="Bill_Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ProBou_ByCus" FunctionName="JavaFloristModel.Store.ProBou_ByCus">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JavaFloristModel.ProBou_ByCus_Result">
+          <ScalarProperty Name="Id_Bou" ColumnName="Id_Bou" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Id_Cus" ColumnName="Id_Cus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ProBouReadAll" FunctionName="JavaFloristModel.Store.ProBouReadAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JavaFloristModel.ProBouReadAll_Result">
+          <ScalarProperty Name="Id_Bou" ColumnName="Id_Bou" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Id_Cus" ColumnName="Id_Cus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

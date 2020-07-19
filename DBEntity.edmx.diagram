@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d10d1dea3c1b4489bb398ec097805457" Name="Diagram1">
+        <EntityTypeShape EntityType="JavaFloristModel.Bill" Width="1.5" PointX="5.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JavaFloristModel.Bouquest" Width="1.5" PointX="4.625" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JavaFloristModel.Cart" Width="1.5" PointX="2.625" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JavaFloristModel.CartDetails" Width="1.5" PointX="8" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JavaFloristModel.Credit" Width="1.5" PointX="8.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JavaFloristModel.Customer" Width="1.5" PointX="3.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JavaFloristModel.Gender" Width="1.5" PointX="1.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JavaFloristModel.Message" Width="1.5" PointX="8.125" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="JavaFloristModel.Role" Width="1.5" PointX="1.25" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="JavaFloristModel.FK_BillCus" ManuallyRouted="false" />
+        <AssociationConnector Association="JavaFloristModel.FK_CreBill" ManuallyRouted="false" />
+        <AssociationConnector Association="JavaFloristModel.FK_MesBill" ManuallyRouted="false" />
+        <AssociationConnector Association="JavaFloristModel.FK_BouCus" ManuallyRouted="false" />
+        <AssociationConnector Association="JavaFloristModel.FK_CaDeBou" ManuallyRouted="false" />
+        <AssociationConnector Association="JavaFloristModel.FK_CaDeCart" ManuallyRouted="false" />
+        <AssociationConnector Association="JavaFloristModel.FK_CartCus" ManuallyRouted="false" />
+        <AssociationConnector Association="JavaFloristModel.FK_CusGen" ManuallyRouted="false" />
+        <AssociationConnector Association="JavaFloristModel.FK_CusRole" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
